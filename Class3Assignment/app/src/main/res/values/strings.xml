@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Class3Assignment</string>
+    <string name="label">Login</string>
+    <string name="txt_username">Username</string>
+    <string name="txt_password">Password</string>
+    <string name="hint_username">Type Username Here</string>
+    <string name="hint_password">********</string>
+    <string name="reset">Reset</string>
+</resources>
