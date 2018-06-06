@@ -62,24 +62,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         countryspinner = (Spinner)findViewById(R.id.CountrySpinner);
         cityspinner = (Spinner)findViewById(R.id.CitySpinner);
 
-         registerbtn.setOnClickListener(this);
-        Common.name = nameet.getText().toString();
-        Common.mobile = mobileet.getText().toString();
-        Common.username = usernameet.getText().toString();
-        Common.password = passwordet.getText().toString();
-
         if(Common.name!=null) {
             nameet.setText(Common.name);
-        }
-        if(Common.mobile!=null) {
+            countryspinner.setSelection(Common.countryInt);
+            cityspinner.setSelection(Common.cityInt);
             mobileet.setText(Common.mobile);
-        }
-        if(Common.username!=null) {
             usernameet.setText(Common.username);
-        }
-        if(Common.password!=null) {
             passwordet.setText(Common.password);
         }
+
+
+        registerbtn.setOnClickListener(this);
 
         countryAdapter = new ArrayAdapter<String>(
                 getApplicationContext(),android.R.layout.simple_spinner_item,countryArray);
@@ -90,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 Common.countryInt = position;
+
 
                 switch (position){
                     case 0 :
