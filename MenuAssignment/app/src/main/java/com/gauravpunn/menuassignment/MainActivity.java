@@ -1,5 +1,7 @@
 package com.gauravpunn.menuassignment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -7,12 +9,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText nameet,mobileet,usernameet,passwordet;
+    Button registerbtn;
+    SharedPreferences sharedPreferences;
+    String NKEY="name",MKEY="mobile",UKEY="username",PKEY="password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +29,33 @@ public class MainActivity extends AppCompatActivity {
         mobileet = (EditText)findViewById(R.id.MobileET);
         usernameet = (EditText)findViewById(R.id.UsernameET);
         passwordet = (EditText)findViewById(R.id.PasswordET);
+        registerbtn = (Button)findViewById(R.id.RegisterBtn);
 
         registerForContextMenu(nameet);
         registerForContextMenu(mobileet);
         registerForContextMenu(usernameet);
         registerForContextMenu(passwordet);
+
+        sharedPreferences = getSharedPreferences("userSharedPrefs", Context.MODE_PRIVATE);
+
+        registerbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = nameet.getText().toString();
+                String mobile = mobileet.getText().toString();
+                String uname = usernameet.getText().toString();
+                String pass = passwordet.getText().toString();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(NKEY,name);
+                editor.putString(MKEY,mobile);
+                editor.putString(UKEY,uname);
+                editor.putString(PKEY,pass);
+                editor.commit();
+
+                Toast.makeText(MainActivity.this, "User details saved successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
