@@ -26,7 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
         try {
             FileInputStream fileInputStream = openFileInput("userFile.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            char[] inputDetails = new char[100];
+            char[] inputDetails = new char[10];
             String holdDetails ="";
 
             int charCount;
